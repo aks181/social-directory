@@ -1,0 +1,73 @@
+<!-- <app-header></app-header> -->
+<app-navbar></app-navbar>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <h3 class="display-5">Profile Info</h3>
+            <div class="card" style="width: 18rem;">
+                <img src="https://robohash.org/sung" class="rounded mx-3 d-block" alt="userImage">
+                <div class="card-body">
+                  <h5 class="card-title">Username</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Email</li>
+                  <li class="list-group-item">Mobile</li>
+                  <li class="list-group-item">Interests</li>
+                  <li class="list-group-item">Location</li>
+                </ul>
+                
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h3 class="display-5">My Contacts</h3>
+            <!-- <div class="container-fluid"> -->
+                <table class="table table-light table-striped">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Mobile</td>
+                            <td>Email</td>
+                            <td>Remove</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mr x</td>
+                            <td>456654456</td>
+                            <td>emailm@ail.com</td>
+                            <td>
+                                <button class="btn btn-danger">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mr x</td>
+                            <td>456654456</td>
+                            <td>emailm@ail.com</td>
+                            <td>
+                                <button class="btn btn-danger">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mr x</td>
+                            <td>456654456</td>
+                            <td>emailm@ail.com</td>
+                            <td>
+                                <button class="btn btn-danger">-</button>
+                            </td>
+                        </tr>
+                        <tr *ngFor= "let data of myContacts">
+                            <p>{{  }}</p>
+                            <td>{{ data.contacts[0].name }}</td>
+                            <td>{{ data.contacts[0].mobile }}</td>
+                            <td>{{ data.contacts[0].email }}</td>
+                            <td>
+                                <button class="btn btn-danger">-</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
