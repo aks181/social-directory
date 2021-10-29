@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h3>Register</h3>
+                    <h6>Set up your account and get started!</h6>
+                    <hr>
+                </div>
+
+                <form [formGroup] = "signupForm" (ngSubmit) = "signUp()">
+                    <div class="mb-3">
+                        <label for="inputName" class="form-label">Full Name</label>
+                        <input type="text" formControlName="name" class="form-control" id="inputName" placeholder="Jane Doe">                      
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPhone" class="form-label">Contact Number</label>
+                        <input type="number" formControlName="mobile" class="form-control" id="inputPhone" placeholder="908909090">                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputInterest" class="form-label">Interest</label>
+                        <input type="text" formControlName="interests" class="form-control" id="inputInterest" placeholder="Swimming">                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputLocation" class="form-label">Location</label>
+                        <input type="text" formControlName="location" class="form-control" id="inputLocation" placeholder="Noida">                        
+                    </div>
+                    <div class="mb-3">
+                      <label for="inputEmail1" class="form-label">Email address</label>
+                      <input type="email" formControlName="email" class="form-control" id="inputEmail1" placeholder="jane.doe@gmail.com">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="inputPassword1" class="form-label">Password</label>
+                      <input type="password"  formControlName="password" class="form-control" id="inputPassword1" placeholder="******">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-dark">Register</button>
+                    <span>
+                        <a routerLink ="/login">Already a member? Click to login</a>
+                    </span>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<!-- Jumbotron -->
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Social Directory</h1>
+        <p class="col-md-8 fs-4">Find like minded people and build your clan</p>
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#knowMoreModal">Know More</button>
+        <div class="d-flex">
+            
+            <img src="https://st2.depositphotos.com/1309454/5540/v/600/depositphotos_55407255-stock-illustration-social-media-background.jpg" alt="image" width="300px" height="300px" id ="mainImage">
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Know More -->
+<div class="modal fade" id="knowMoreModal" tabindex="-1" aria-labelledby="knowMoreModal" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: #d4d2d2;">
+        <h5 class="modal-title" id="exampleModalLabel">About the platform</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        Social Directory is a employee connection platform where you can search through all the users registered on the portal and add them to your contact list. So what are you waiting for? Go and connect with people having same interests as you. ☺
+    </div>
+    </div>
+</div>
+</div>
+
+<!-- Users table -->
+<app-userslist></app-userslist>
