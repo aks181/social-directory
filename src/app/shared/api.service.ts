@@ -21,8 +21,9 @@ export class ApiService {
     }))
   }
 
-  getContacts(id: number) {
-    return this._http.get<any>("http://localhost:3000/contacts/"+id).pipe(map((res: any) => {
+  getContacts() {
+    return this._http.get<any>("http://localhost:3000/contactsnew").pipe(map((res: any) => {
+      // console.log(res)
       return res;
     }))
   }

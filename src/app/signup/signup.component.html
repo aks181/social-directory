@@ -1,47 +1,101 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="text-center">
-                    <h3>Register</h3>
-                    <h6>Set up your account and get started!</h6>
-                    <hr>
-                </div>
 
-                <form [formGroup] = "signupForm" (ngSubmit) = "signUp()">
-                    <div class="mb-3">
-                        <label for="inputName" class="form-label">Full Name</label>
-                        <input type="text" formControlName="name" class="form-control" id="inputName" placeholder="Jane Doe">                      
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputPhone" class="form-label">Contact Number</label>
-                        <input type="number" formControlName="mobile" class="form-control" id="inputPhone" placeholder="908909090">                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputInterest" class="form-label">Interest</label>
-                        <input type="text" formControlName="interests" class="form-control" id="inputInterest" placeholder="Swimming">                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="inputLocation" class="form-label">Location</label>
-                        <input type="text" formControlName="location" class="form-control" id="inputLocation" placeholder="Noida">                        
-                    </div>
-                    <div class="mb-3">
-                      <label for="inputEmail1" class="form-label">Email address</label>
-                      <input type="email" formControlName="email" class="form-control" id="inputEmail1" placeholder="jane.doe@gmail.com">
-                    </div>
+<div *ngIf = "success" class="alert alert-success" role="alert">
+  Signup Successful.
+</div>
 
-                    <div class="mb-3">
-                      <label for="inputPassword1" class="form-label">Password</label>
-                      <input type="password"  formControlName="password" class="form-control" id="inputPassword1" placeholder="******">
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-dark">Register</button>
-                    <span>
-                        <a routerLink ="/login">Already a member? Click to login</a>
-                    </span>
-                </form>
-                
-            </div>
+<div class="container pt-5 mb-5">
+  <div class="row justify-content-sm-center pt-5">
+    <div id="base" class="col-sm-6 shadow round pb-3">
+      <!-- <div class="card"> -->
+      <!-- <div class="text-center"> -->
+      <h3 class="display-4 text-center pt-3 text-dark">Register</h3>
+      <p class="text-center text-secondary">
+        Set up your account and get started!
+      </p>
+      <hr />
+      <!-- </div> -->
+
+      <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+        <div class="form-group">
+          <label for="inputName" class="col-form-label">Full Name</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            id="inputName"
+            placeholder="Enter your full name"
+          />
+          <small *ngIf="name.invalid && name.touched" class="text-danger">Please enter a valid name. Minimum characters = 3.</small>
         </div>
+        <div class="form-group">
+          <label for="inputPhone" class="col-form-label">Mobile</label>
+          <input
+            type="number"
+            formControlName="mobile"
+            class="form-control"
+            id="inputPhone"
+            placeholder="Enter your 10 digit mobile number"
+            pattern="^\d{10}$"
+          />
+          <small *ngIf="mobile.invalid && mobile.touched" class="text-danger">Please enter a valid mobile number.</small>
+        </div>
+        <div class="form-group">
+          <label for="inputInterest" class="col-form-label">Interests</label>
+          <input
+            type="text"
+            formControlName="interests"
+            class="form-control"
+            id="inputInterest"
+            placeholder="Enter your interests"
+          />
+          <small *ngIf="interests.invalid && interests.touched" class="text-danger">Please enter your interests.</small>
+        </div>
+        <div class="form-group">
+          <label for="inputLocation" class="col-form-label">Location</label>
+          <input
+            type="text"
+            formControlName="location"
+            class="form-control"
+            id="inputLocation"
+            placeholder="Enter your location"
+          />
+          <small *ngIf="location.invalid && location.touched" class="text-danger">Please enter a valid location.</small>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail1" class="col-form-label">Email address</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            id="inputEmail1"
+            placeholder="Enter a valid email address"
+          />
+          <small *ngIf="email.invalid && email.touched" class="text-danger">Please enter a valid email.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword1" class="col-form-label">Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="inputPassword1"
+            placeholder="Enter a password"
+          />
+          <small *ngIf="password.invalid && password.touched" class="text-danger">Password must have atleast 6 characters.</small>
+        </div>
+        <br />
+        <button [disabled]= "signupForm.invalid" type="submit" class="btn btn-dark">Register</button>
+        <br>
+        <a
+          class="text-dark"
+          style="text-decoration: none"
+          routerLink="/login"
+          >Already a user? Click here to login.</a
+        >
+      </form>
+
+      <!-- </div> -->
     </div>
+  </div>
 </div>

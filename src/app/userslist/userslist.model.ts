@@ -5,6 +5,7 @@ export class UserData {
     mobile: number = 0;
     interests: string = '';
     location: string = '';
+    contacts = [];
 
     constructor() {}
 

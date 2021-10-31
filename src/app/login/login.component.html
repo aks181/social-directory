@@ -1,95 +1,78 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="text-center">
-                    <h1>Login</h1>
-                    <h5>Start building your clan</h5>
-                    <hr>
-                </div>
-
-                <form class = "needs-validation" novalidate [formGroup] = "loginForm" (ngSubmit)= "logIn()">
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" formControlName = "email" class="form-control" placeholder="Enter your registered email" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input type="password"  formControlName = "password" class="form-control" id="exampleInputPassword1" placeholder="Enter password" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-dark">Login</button>
-                </form>
-                <a style="color:blueviolet; margin-top: 10px;" routerLink ="/signup">New User? Click to register.</a>
-
-            </div>
-        </div>
-    </div>
+<div class="d-flex justify-content-center">
+  <div
+    *ngIf="warning"
+    class="alert alert-danger mx-5 mt-1 position-absolute"
+    style="z-index: 999"
+    role="alert"
+  >
+    Incorrect email/password. please try again.
+  </div>
 </div>
 
+<div class="container pt-5">
+  <div class="row justify-content-sm-center pt-5">
+    <div id="base" class="col-sm-6 shadow round pb-3">
+      <!-- <div class="card">
+                <div class="text-center"> -->
+      <h1 class="display-4 text-center pt-3 text-dark">Login</h1>
+      <hr />
+      <!-- </div> -->
 
-<!-- <form class="row g-3 needs-validation" novalidate>
-    <div class="col-md-4">
-      <label for="validationCustom01" class="form-label">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="validationCustom02" class="form-label">Last name</label>
-      <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="validationCustomUsername" class="form-label">Username</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="inputGroupPrepend">@</span>
-        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-        <div class="invalid-feedback">
-          Please choose a username.
+      <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+        <div class="form-group mb-3">
+          <label for="exampleInputEmail1" class="col-form-label">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+            placeholder="Enter your registered email"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            required
+          />
+          <small *ngIf="email.invalid && email.touched" class="text-danger"
+            >Please enter a valid email address.</small
+          >
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label for="validationCustom03" class="form-label">City</label>
-      <input type="text" class="form-control" id="validationCustom03" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="validationCustom04" class="form-label">State</label>
-      <select class="form-select" id="validationCustom04" required>
-        <option selected disabled value="">Choose...</option>
-        <option>...</option>
-      </select>
-      <div class="invalid-feedback">
-        Please select a valid state.
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="validationCustom05" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="validationCustom05" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-        <label class="form-check-label" for="invalidCheck">
-          Agree to terms and conditions
-        </label>
-        <div class="invalid-feedback">
-          You must agree before submitting.
+
+        <div class="form-group mb-3">
+          <label for="exampleInputPassword1" class="col-form-label"
+            >Password</label
+          >
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Enter password"
+            required="required"
+          />
+          <small
+            *ngIf="password.invalid && password.touched"
+            class="text-danger"
+            >Password must have 6 characters.</small
+          >
         </div>
-      </div>
+
+        <button
+          [disabled]="loginForm.invalid"
+          type="submit"
+          class="btn btn-dark"
+        >
+          Login
+        </button>
+        <br /><a
+          class="text-dark"
+          style="text-decoration: none"
+          routerLink="/signup"
+          >New User? Click here to register.</a
+        >
+      </form>
+
+      <!-- </div> -->
     </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-  </form> -->
+  </div>
+</div>

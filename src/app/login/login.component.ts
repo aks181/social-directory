@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -11,60 +12,57 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
- 
-  constructor(private formBuilder: FormBuilder, private _http:HttpClient, private router: Router) { }
+  success: boolean = false;
+  warning: boolean = false;
+  loggedUser: any;
+
+  constructor(private formBuilder: FormBuilder, private _http: HttpClient, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email:[''],
-      password:['']
-    })
-
-    this.validate();
+    // this.loginForm = this.formBuilder.group({
+    //   email: [''],
+    //   password: ['']
+    // })
+    this.loginForm = new FormGroup({
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'password': new FormControl(null, [Validators.required, Validators.minLength(6)])
+    })    
   }
-    validate() {
-      'use strict'
-    
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll('.needs-validation')
-    
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-        .forEach(function (form: any) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-    
-            form.classList.add('was-validated')
-          }, false)
-        })
-    }
+  
   //logIn method
   logIn() {
-    this._http.get<any>("http://localhost:3000/signup").subscribe(res => {
-      const user = res.find((a: any)=> {
-        if(a.email === '' && a.email !== this.loginForm.value.email) {
-          alert("User not found. Please register first.");
-        }else {
-          if(a.password === this.loginForm.value.password) {
-            alert("Login Successful");            
-            this.loginForm.reset();
-            this.router.navigate(['home']);
-            return;
-          } else {
-            alert("Incorrect email/password");
-          }
-        } 
-        // else {
-        //   alert("User not found. Please register first.");
-        // } 
+    this._http.get<any>("http://localhost:3000/signup")
+      .subscribe(res => {
+        const user = res.find((a: any) => {
+          return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
+        });
+        if (user) {
+          // this.success = true;
+          // console.log(user.id);
+          this.loggedUser = user;
+          this.loginService.loggedUser = this.loggedUser;
+          // console.log(this.loggedUser)
+          this.loginForm.reset();
+          this.router.navigate(['home'])
+        } else {
+          // alert('User not found.')
+          this.warning = true;
+        }
 
-        
+      }, err => {
+        alert('Something went wrong.')
       })
-    }, err => {
-      alert("Something went wrong on the backend")
-    })
   }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  // get LoggedInUser() {
+  //   return this.loggedUserId;
+  // }
 }

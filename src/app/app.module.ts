@@ -8,6 +8,9 @@ import { HeaderComponent } from './header/header.component';
 import { UserslistComponent } from './userslist/userslist.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ApiService } from './shared/api.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 
 
 @NgModule({
@@ -26,7 +29,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule,
     Ng2SearchPipeModule
   ],
-  providers: [],
+  providers: [ ApiService, LoginService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
