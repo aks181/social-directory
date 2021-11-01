@@ -60,12 +60,7 @@ export class UserslistComponent implements OnInit {
       alert("Something's wrong.")
     })
     this.success= false;
-  }
-
-  searchUsers(event) {
-    // console.log(event.target.value)
-
-  }
+  }  
  
 
 }
